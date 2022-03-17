@@ -41,6 +41,22 @@ router.post('/', async(req, res, next) => {
     } catch(err){
         next(err);
     }
-})
+});
+
+router.put('/', async(req, res, next) => {
+    const {id, concept, amount, date} = req.body;
+    try{
+        if(id && concept && amount){
+            const operation = await Operation.update({concept, amount, date}, {
+                where: {id}
+            });
+            return res.send(operation);
+        }
+        res.json('Missing data');
+
+    } catch(err){
+        next(err);
+    }
+});
 
 module.exports = router;
