@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 
 module.exports = sequelize => {
     sequelize.define('Operation', {
-        content: {
+        concept: {
             type: DataTypes.STRING,
             allowNull: false
         },
