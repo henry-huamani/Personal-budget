@@ -59,4 +59,20 @@ router.put('/', async(req, res, next) => {
     }
 });
 
+router.delete('/clear/:id', async(req, res, next) => {
+    const {id} = req.params;
+
+    try{
+        if(isNaN(parseInt(id)) === false){
+            return res.json(await Operation.destroy({
+                where: {id}
+            })
+            );
+        }
+        next();
+    } catch(err){
+        next(err);
+    }
+});
+
 module.exports = router;
