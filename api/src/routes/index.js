@@ -16,6 +16,10 @@ router.get('/', async(req, res) => {
         return res.send(operations);
     }
 
+    else if(last && isNaN(parseInt(last)) === true){
+        return res.send([]);
+    }
+
     const operations = await Operation.findAll({
         include: Type_of_operation,
         order: [
