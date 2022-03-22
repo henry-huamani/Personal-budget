@@ -1,16 +1,21 @@
 const {conn, Type_of_operation} = require('./src/db');
+const server = require('./src/app');
 
 conn.sync({force: true}).then(() => {
-    let typeIncome = Type_of_operation.create({
-        name: "income"
-    });
+    server.listen(3001, () => {
+        console.log('Server listening on port 3001!');
 
-    let typeOutflow = Type_of_operation.create({
-        name: "outflow"
-    });
-
-    Promise.all([typeIncome, typeOutflow])
-    .then( () => {
-        console.log("Preloaded operation types");
+        let typeIncome = Type_of_operation.create({
+            name: "income"
+        });
+    
+        let typeOutflow = Type_of_operation.create({
+            name: "outflow"
+        });
+    
+        Promise.all([typeIncome, typeOutflow])
+        .then( () => {
+            console.log("Preloaded operation types");
+        });
     });
 });
