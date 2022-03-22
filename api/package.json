@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon -L",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Henry Huamani",
@@ -14,5 +15,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
