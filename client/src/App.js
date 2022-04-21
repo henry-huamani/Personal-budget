@@ -1,10 +1,15 @@
+import React from 'react';
 import './App.css';
+import {Route} from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Resultant from './components/Resultant';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Personal Budget</h1>
-    </div>
+    <React.Fragment>
+      <Route path="/home" component={NavBar} />
+      <Route exact path="/home" component={Resultant} />
+    </React.Fragment>
   );
 }
 
