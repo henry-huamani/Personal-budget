@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {getOperationsByType} from "../actions";
 import Operations from "./Operations";
-import Form from "./Form";
+import InsertionAndEditingForm from "./Form";
 import {connect} from "react-redux";
+
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import Modal from 'react-bootstrap/Modal';
 
 const OperationsFilter = ({incomeOperations, outflowOperations, getOperationsByType}) => {
     const [filterValue, setFilterValue] = useState("income");
@@ -16,8 +20,8 @@ const OperationsFilter = ({incomeOperations, outflowOperations, getOperationsByT
     });
     const [showForm, setShowForm] = useState(false);
 
-    const handleChange = (event) => {
-        setFilterValue(event.target.value);
+    const handleSelect= (key) => {
+        setFilterValue(key);
     }
 
     useEffect(() => {
@@ -29,34 +33,44 @@ const OperationsFilter = ({incomeOperations, outflowOperations, getOperationsByT
     }, [showChange]);
 
     return(
-        <React.Fragment>
-            <div>
-                <label>Filtered by: </label>
-                <select name="type" onChange={handleChange} value={filterValue} >
-                    <option value="income" >Income</option>
-                    <option value="outflow" >Outflow</option>
-                </select>
+        <div className='p-1'>
+            <Tabs activeKey={filterValue}
+                onSelect={handleSelect}
+                className="mb-3 mt-1">
+                    <Tab eventKey="income" title="Income">
+                        <Operations
+                            records={incomeOperations}
+                            setShowChange={setShowChange}
+                            setShowForm={setShowForm}
+                            setNewOperation={setEditOperation}
+                            setIdUpdate={setIdUpdate} 
+                        />
+                    </Tab>
+                    <Tab eventKey="outflow" title="Outflow">
+                        <Operations
+                            records={outflowOperations}
+                            setShowChange={setShowChange}
+                            setShowForm={setShowForm}
+                            setNewOperation={setEditOperation}
+                            setIdUpdate={setIdUpdate} 
+                        />
+                    </Tab>
+            </Tabs>
 
-                <div>
-                    <Operations
-                    records={filterValue === "income" ? incomeOperations : outflowOperations}
-                    setShowChange={setShowChange}
-                    setShowForm={setShowForm}
-                    setNewOperation={setEditOperation}
-                    setIdUpdate={setIdUpdate} 
-                    />
-                </div>
-
-                <div>
-                    {showForm ? <Form setShowChange={setShowChange}
+            <Modal show={showForm} onHide={() => setShowForm(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Operation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <InsertionAndEditingForm setShowChange={setShowChange}
                     setShowForm={setShowForm}
                     newOperation={editOperation}
                     setNewOperation={setEditOperation}
                     idUpdate={idUpdate}
-                    setIdUpdate={setIdUpdate} /> : null}
-                </div>
-            </div>
-        </React.Fragment>
+                    setIdUpdate={setIdUpdate}/>
+                </Modal.Body>
+            </Modal>
+        </div>
     )
 }
 
