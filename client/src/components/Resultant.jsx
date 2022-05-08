@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {getOperationsByType, getRecords} from "../actions";
-import Form from "./Form";
+import InsertionAndEditingForm from "./Form";
 import Operations from "./Operations";
 import {connect} from "react-redux";
+
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Modal from 'react-bootstrap/Modal';
 
 const Resultant = (props) => {
     const [showForm, setShowForm] = useState(false);
@@ -26,25 +32,39 @@ const Resultant = (props) => {
         }
     }, [showChange]);
 
-    return <div>
-        <p>Total amount of income: {props.incomeAmount}</p>
-        <p>Total amount of outflow: {props.outflowAmount}</p>
-        <p>Resultant: {props.incomeAmount - props.outflowAmount}</p>
+    return <div className='p-1'>
+        <Card className="mt-1">
+            <ListGroup variant="flush">
+                <ListGroup.Item className="lead">Total amount of income: {props.incomeAmount}</ListGroup.Item>
+                <ListGroup.Item className="lead">Total amount of outflow: {props.outflowAmount}</ListGroup.Item>
+                <ListGroup.Item className="lead">Resultant: {props.incomeAmount - props.outflowAmount}</ListGroup.Item>
+            </ListGroup>
+        </Card>
 
-        <h4>Last 10 operations recorded</h4>
+        <h6 className="display-6 mt-3">Last 10 operations recorded:</h6>
         <Operations records={props.records}
         setShowChange={setShowChange}
         setShowForm={setShowForm}
         setNewOperation={setNewOperation}
         setIdUpdate={setIdUpdate}/>
         
-        <button onClick={() => setShowForm(true)}>Add new operation</button>
-        {showForm ? <Form setShowChange={setShowChange}
-        setShowForm={setShowForm}
-        newOperation={newOperation}
-        setNewOperation={setNewOperation}
-        idUpdate={idUpdate}
-        setIdUpdate={setIdUpdate}/> : null}
+        <Container className="text-center">
+            <Button onClick={() => setShowForm(true)} variant='primary' >Add new +</Button>
+        </Container>
+
+        <Modal show={showForm} onHide={() => setShowForm(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>New operation</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <InsertionAndEditingForm setShowChange={setShowChange}
+                setShowForm={setShowForm}
+                newOperation={newOperation}
+                setNewOperation={setNewOperation}
+                idUpdate={idUpdate}
+                setIdUpdate={setIdUpdate}/>
+            </Modal.Body>
+        </Modal>
     </div>
 }
 

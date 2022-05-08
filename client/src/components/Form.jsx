@@ -1,7 +1,10 @@
 import React from "react";
 import axios from "axios";
 
-const Form = ({setShowChange, setShowForm, newOperation, setNewOperation, idUpdate, setIdUpdate}) => {
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+const InsertionAndEditingForm = ({setShowChange, setShowForm, newOperation, setNewOperation, idUpdate, setIdUpdate}) => {
 
     const handleChange = (event) => {
         setNewOperation({
@@ -60,41 +63,39 @@ const Form = ({setShowChange, setShowForm, newOperation, setNewOperation, idUpda
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <ul>
-                <li>
-                    <label htmlFor="">Concept: * </label>
-                    <input type="text" name="concept" onChange={handleChange} value={newOperation.concept}/>
-                </li>
-                <li>
-                    <label htmlFor="">Amount: * </label>
-                    <input type="number" name="amount" onChange={handleChange} value={newOperation.amount}/>
-                </li>
-                <li>
-                    <label htmlFor="">Date: * </label>
-                    <input type="date" name="date" onChange={handleChange} value={newOperation.date}/>
-                </li>
-                <li>
-                    <label htmlFor="">Type of operation: * </label>
-                    <select disabled={idUpdate? true : false} name="TypeOfOperationId" onChange={handleChange} value={newOperation.TypeOfOperationId}>
-                        <option value={1} >Income</option>
-                        <option value={2}>Outflow</option>
-                    </select>
-                </li>
-
-                <button type="submit">Submit</button>
-                <button type="reset" onClick={() => {
-                    setShowForm(false);
-                    setNewOperation({
-                        concept: "",
-                        amount: "",
-                        date: "",
-                        TypeOfOperationId: 1
-                    });
-                }}>Cancel</button>
-            </ul>  
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className='mb-3' controlId='formBasicText'>
+                <Form.Label>Concept: *</Form.Label>
+                <Form.Control type='text' name='concept' onChange={handleChange} value={newOperation.concept} />
+            </Form.Group>
+            <Form.Group className='mb-3' controlId='formBasicNumber'>
+                <Form.Label>Amount: *</Form.Label>
+                <Form.Control type='number' name='amount' onChange={handleChange} value={newOperation.amount} />
+            </Form.Group>
+            <Form.Group className='mb-3' controlId='formBasicDate'>
+                <Form.Label>Date: *</Form.Label>
+                <Form.Control type='date' name='date' onChange={handleChange} value={newOperation.date} />
+            </Form.Group>
+            <Form.Group className='mb-3' controlId='formBasicSelect'>
+                <Form.Label>Type of operation: *</Form.Label>
+                <Form.Select aria-label="Default select example" disabled={idUpdate? true : false} name="TypeOfOperationId" onChange={handleChange} value={newOperation.TypeOfOperationId}>
+                    <option value={1} >Income</option>
+                    <option value={2}>Outflow</option>
+                </Form.Select>
+                {idUpdate? <Form.Text className="text-muted">This field cannot be modified</Form.Text> : null}
+            </Form.Group>
+            <Button variant="secondary" type="reset" onClick={() => {
+                setShowForm(false);
+                setNewOperation({
+                    concept: "",
+                    amount: "",
+                    date: "",
+                    TypeOfOperationId: 1
+                });
+            }} className='me-1'>Cancel</Button>
+            <Button variant="primary" type="submit" className='ms-1'>{idUpdate ? 'Save changes' : 'Submit'}</Button>
+        </Form>
     )
 }
 
-export default Form;
+export default InsertionAndEditingForm;
