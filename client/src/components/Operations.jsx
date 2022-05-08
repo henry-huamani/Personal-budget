@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Table from 'react-bootstrap/Table';
 
 const Operations = ({records, setShowChange, setShowForm, setNewOperation, setIdUpdate}) => {
 
@@ -29,26 +30,36 @@ const Operations = ({records, setShowChange, setShowForm, setNewOperation, setId
     }
 
     return records.length > 0 ? (
-        <table>
-            <tr>
-                <th>Concept</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Type of operation</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            {records.map(record => (
-                <tr key={record.id}>
-                    <td>{record.concept}</td>
-                    <td>{record.amount}</td>
-                    <td>{record.date}</td>
-                    <td>{record.Type_of_operation.name}</td>
-                    <td><button onClick={() => handleUpdateClick(record.id, record.concept, record.amount, record.date, record.TypeOfOperationId)}>edit</button></td>
-                    <td><button onClick={() => handleDeleteClick(record.id)}>delete</button></td>
-                </tr> 
-            ))}
-        </table>) : <p>You have not yet registered any operations</p>;
+        <Table striped bordered hover responsive>
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Type of operation</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {records.map(record => (
+                    <tr key={record.id}>
+                        <td>{record.concept}</td>
+                        <td>S/ {record.amount}</td>
+                        <td>{record.date}</td>
+                        <td>{record.Type_of_operation.name}</td>
+                        <td>
+                            <button onClick={() => handleUpdateClick(record.id, record.concept, record.amount, record.date, record.TypeOfOperationId)}><i className="bi bi-pen-fill"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button onClick={() => handleDeleteClick(record.id)}><i className="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    ) : <p className="lead text-center">You have not yet registered any operations</p>;
 }
 
 export default Operations;
