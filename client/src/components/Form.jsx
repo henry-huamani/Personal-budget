@@ -17,7 +17,11 @@ const InsertionAndEditingForm = ({setShowChange, setShowForm, newOperation, setN
         event.preventDefault();
         if(newOperation.concept && newOperation.amount && newOperation.date){
             if(idUpdate){
-                axios.put("http://localhost:3001/operations", {...newOperation, id: idUpdate})
+                axios.put("http://localhost:3001/operations", {...newOperation, id: idUpdate}, {
+                    headers: {
+                        'Authorization': `Bearer ${document.cookie.replace('token=', '')}`  
+                    }
+                })
                 .then(response => {
                     if(response.data[0] === 1){
                         alert("Record edited successfully");
@@ -37,7 +41,11 @@ const InsertionAndEditingForm = ({setShowChange, setShowForm, newOperation, setN
                 })
             }
             else{
-                axios.post("http://localhost:3001/operations", newOperation)
+                axios.post("http://localhost:3001/operations", newOperation, {
+                    headers: {
+                        'Authorization': `Bearer ${document.cookie.replace('token=', '')}`  
+                    }
+                })
                 .then(response => {
                     if(typeof response.data !== 'string'){
                         alert("Record submitted successfully");

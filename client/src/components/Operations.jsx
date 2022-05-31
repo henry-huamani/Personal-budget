@@ -16,7 +16,11 @@ const Operations = ({records, setShowChange, setShowForm, setNewOperation, setId
     }
 
     const handleDeleteClick = (id) => {
-        axios.delete(`http://localhost:3001/operations/clear/${id}`)
+        axios.delete(`http://localhost:3001/operations/clear/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${document.cookie.replace('token=', '')}`  
+            }
+        })
         .then(response => {
             if(response.data === 1){
                 alert("Record deleted successfully");
