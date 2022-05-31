@@ -1,4 +1,5 @@
 const initialState = {
+    user: {},
     incomeOperations: [],
     outflowOperations: [],
     incomeAmount: null,
@@ -8,6 +9,13 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action){
     switch(action.type){
+
+        case "GET_ACCESS":
+            return {
+                ...state,
+                user: action.payload
+            }
+
         case "GET_INCOME_OPERATIONS":
             return {
                 ...state,
