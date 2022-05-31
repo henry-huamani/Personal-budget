@@ -1,4 +1,6 @@
-const {conn, Type_of_operation} = require('./src/db');
+const {conn, Type_of_operation, User} = require('./src/db');
+require('dotenv').config();
+const {ADMIN_EMAIL, ADMIN_PASSWORD} = process.env;
 const server = require('./src/app');
 
 conn.sync({force: true}).then(() => {
@@ -17,5 +19,15 @@ conn.sync({force: true}).then(() => {
         .then( () => {
             console.log("Preloaded operation types");
         });
+
+        const adminUser = User.create({
+            name: 'Admin',
+            lastname: 'Admin',
+            email: ADMIN_EMAIL,
+            password: ADMIN_PASSWORD,
+            gender: 'male'
+        });
+        adminUser.then(() => console.log('Registered administrator user'))
+        .catch(err => console.log(err));
     });
 });
