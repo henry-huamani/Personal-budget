@@ -23,11 +23,15 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 modelDefiners.forEach( model => model(sequelize));
 
-const {Operation, Type_of_operation} = sequelize.models;
+const {Operation, Type_of_operation, User} = sequelize.models;
 
 //One-to-many relationship
 Type_of_operation.hasMany(Operation);
 Operation.belongsTo(Type_of_operation);
+
+//One-to-many relationship
+User.hasMany(Operation);
+Operation.belongsTo(User);
 
 module.exports = {
     ...sequelize.models,
