@@ -1,14 +1,17 @@
 const router = require('express').Router();
 const {Operation, Type_of_operation} = require('../db');
+const {validateToken} = require('./authentication_functions');
 
-router.get('/:typeOperation', async(req, res, next) => {
+router.get('/:typeOperation', validateToken, async(req, res, next) => {
     const {typeOperation} = req.params;
+    const {id} = req.user;
 
     try{
         if(typeOperation === 'income' || typeOperation === 'outflow'){
             const operations = await Operation.findAll({
                 include: Type_of_operation,
                 where: {
+                    UserId: id,
                     TypeOfOperationId: typeOperation === 'income'? 1 : 2
                 }
             });
@@ -21,8 +24,9 @@ router.get('/:typeOperation', async(req, res, next) => {
     }
 });
 
-router.post('/', async(req, res, next) => {
+router.post('/', validateToken, async(req, res, next) => {
     const {concept, amount, date, TypeOfOperationId} = req.body;
+    const {id} = req.user;
 
     try{
         if(concept && amount && TypeOfOperationId){
@@ -32,18 +36,19 @@ router.post('/', async(req, res, next) => {
                 date
             }).then( operation => {
                 operation.setType_of_operation(TypeOfOperationId);
+                operation.setUser(id)
                 res.send(operation);
             });
             return;
         }
-        res.json('Missing data');
+        res.status(400).send({msg: 'Missing data'});
 
     } catch(err){
         next(err);
     }
 });
 
-router.put('/', async(req, res, next) => {
+router.put('/', validateToken, async(req, res, next) => {
     const {id, concept, amount, date} = req.body;
     try{
         if(id && concept && amount){
@@ -59,7 +64,7 @@ router.put('/', async(req, res, next) => {
     }
 });
 
-router.delete('/clear/:id', async(req, res, next) => {
+router.delete('/clear/:id', validateToken, async(req, res, next) => {
     const {id} = req.params;
 
     try{

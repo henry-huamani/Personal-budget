@@ -1,35 +1,50 @@
 const router = require('express').Router();
-const {Operation, Type_of_operation} = require('../db');
+const {Operation, Type_of_operation, User} = require('../db');
+const {validateToken} = require('./authentication_functions');
 
-router.get('/', async(req, res) => {
+router.get('/', validateToken, async(req, res, next) => {
     const {last} = req.query;
+    const {id} = req.user;
 
-    if(last && isNaN(parseInt(last)) === false){
+    try {
+        if(last && isNaN(parseInt(last)) === false){
+            const operations = await Operation.findAll({
+                where: {
+                    UserId: id
+                },
+                include: [Type_of_operation, User],
+                attributes: {exclude: ['UserId']},
+                order: [
+                    ['id', 'DESC']
+                ],
+                limit: last,
+            });
+            operations.sort((a, b) => a.id - b.id);
+            return res.send(operations);
+        }
+    
+        else if(last && isNaN(parseInt(last)) === true){
+            return res.send([]);
+        }
+    
         const operations = await Operation.findAll({
-            include: Type_of_operation,
+            where: {
+                UserId: id
+            },
+            include: [Type_of_operation, User],
+            attributes: { exclude: ['UserId']  },
             order: [
-                ['id', 'DESC']
+                ['id']
             ],
-            limit: last,
         });
-        operations.sort((a, b) => a.id - b.id);
-        return res.send(operations);
+        res.send(operations);
+    } catch (error) {
+        next(error);
     }
-
-    else if(last && isNaN(parseInt(last)) === true){
-        return res.send([]);
-    }
-
-    const operations = await Operation.findAll({
-        include: Type_of_operation,
-        order: [
-            ['id']
-        ],
-    });
-    res.send(operations);
 });
 
 module.exports = {
     operations: require('./operations'),
+    authentication: require('./authentication'),
     index: router
 }
