@@ -27,9 +27,9 @@ const About = () => {
                             </Carousel.Item>
                         </Carousel>
                         <Card.Text className="mt-4">
-                            <p>This web app allows you to keep track of the expenses and income of money that you or your family is having.</p>
-                            <p>Record with exact date the expenses or income of money to then visualize the result of all of them or also visualize them filtering them by the type of operation.</p>
-                            <p>Also edit or delete operations if you made a mistake when registering them or because they are no longer relevant.</p>
+                            This web app allows you to keep track of the expenses and income of money that you or your family is having.<br/><br/>
+                            Record with exact date the expenses or income of money to then visualize the result of all of them or also visualize them filtering them by the type of operation.<br/><br/>
+                            Also edit or delete operations if you made a mistake when registering them or because they are no longer relevant.<br/><br/>
                         </Card.Text>
                     </Card.Body>
                 </Card>
