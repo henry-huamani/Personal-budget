@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const {AUTHENTICATION_KEY, ADMIN_EMAIL, ADMIN_PASSWORD} = process.env;
+const {AUTHENTICATION_KEY, ADMIN_EMAIL, ADMIN_PASSWORD, VERIFICATION_ADMIN_PASSWORD} = process.env;
 
 const generateAccessToken = (user) => {
     return jwt.sign(user, AUTHENTICATION_KEY, {expiresIn: '4h'});
@@ -51,7 +51,7 @@ const validateAdmin = (req, res, next) => {
                 }
             });
 
-            if(user.email === ADMIN_EMAIL && user.password === ADMIN_PASSWORD){
+            if(user.email === ADMIN_EMAIL && ADMIN_PASSWORD === VERIFICATION_ADMIN_PASSWORD){
                 req.user = user;
                 next()
             }
