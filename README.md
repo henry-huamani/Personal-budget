@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal_budget app allows to record the expenses and income of money that a person has daily. 
 
-## Available Scripts
+## Personal_budget API
 
-In the project directory, you can run:
+TECH STACK:
+- Node.js
+- Express
+- Sequelize
+- PostgreSQL
 
-### `npm start`
+After cloning this project. Open the command line and move to the api/ folder and follow these 3 steps to get the API works:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1° `npm install`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This command will install all dependencies that server needs to work.
 
-### `npm test`
+### 2° Create a `.env` file.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The server needs values from this file.\
+Example:
 
-### `npm run build`
+    DB_USER=postgres
+    DB_PASSWORD=htech40
+    DB_HOST=localhost
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    AUTHENTICATION_KEY=personal_budget
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ADMIN_EMAIL=admin1234@budget.com
+    ADMIN_PASSWORD=admin1234
+    VERIFICATION_ADMIN_PASSWORD=admin1234
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3° `npm start`
 
-### `npm run eject`
+This command will start the server and the API will work.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Note: If you want to know how this API works**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+See the API documentación [here](https://documenter.getpostman.com/view/19394139/Uz5GoFyq).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Personal_budget client
 
-## Learn More
+TECH STACK:
+- React.js
+- Redux
+- Axios
+- React-Bootstrap
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+After cloning this project. Open the command line and move to the client/ folder and follow these 2 steps to get the client works:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1° `npm install`
 
-### Code Splitting
+This command will install all dependencies that client needs to work.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2° `npm start`
 
-### Analyzing the Bundle Size
+This command allows the client to start working.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Client app previews**
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+    <span>
+        <p>Register</p>
+        <img src="https://i.postimg.cc/05YPtk4d/personal-budget-register.png" alt="personal-budget-register" width="431" height="220" />
+    </span>
+    <span>
+        <p>Login</p>
+        <img src="https://i.postimg.cc/yYnBHfsD/personal-budget-login.png" alt="personal-budget-login" width="431" height="220" />
+    </span>
+</div>
+<br/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+    <span>
+        <p>Home</p>
+        <img src="https://i.postimg.cc/Gm2Rhkmq/personal-budget-home.png" alt="personal-budget-home" width="431" height="220" />
+    </span>
+    <span>
+        <p>New operation</p>
+        <img src="https://i.postimg.cc/VkV8SdS1/personal-budget-new-operation.png" alt="personal-budget-new-operation" width="431" height="220" />
+    </span>
+</div>
+<br/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+    <span>
+        <p>Operations</p>
+        <img src="https://i.postimg.cc/65BwFsJs/personal-budget-operations.png" alt="personal-budget-operations" width="431" height="220" />
+    </span>
+    <span>
+        <p>About</p>
+        <img src="https://i.postimg.cc/jjnrytNf/personal-budget-about.png" alt="personal-budget-about" width="431" height="220" />
+    </span>
+</div>
