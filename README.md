@@ -22,14 +22,14 @@ The server needs values from this file.\
 Example:
 
     DB_USER=postgres
-    DB_PASSWORD=htech40
+    DB_PASSWORD=examplePassword
     DB_HOST=localhost
 
-    AUTHENTICATION_KEY=personal_budget
+    AUTHENTICATION_KEY=exampleKey
 
-    ADMIN_EMAIL=admin1234@budget.com
-    ADMIN_PASSWORD=admin1234
-    VERIFICATION_ADMIN_PASSWORD=admin1234
+    ADMIN_EMAIL=example_email_admin@example.com
+    ADMIN_PASSWORD=example1234
+    VERIFICATION_ADMIN_PASSWORD=example1234
 
 ### 3° `npm start`
 
