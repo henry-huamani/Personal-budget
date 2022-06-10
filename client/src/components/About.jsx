@@ -10,7 +10,7 @@ const About = () => {
         <React.Fragment>
             <Container className="p-1">
                 <Card>
-                    <Card.Header as='h5'>Record all your monetary operations to be in control of your finances</Card.Header>
+                    <Card.Header as='h5' className='text-center text-md-start' >Record all your monetary operations to be in control of your finances</Card.Header>
                     <Card.Body>
                         <Carousel className="bg-primary">
                             <Carousel.Item>
