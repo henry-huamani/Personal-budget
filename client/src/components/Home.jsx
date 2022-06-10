@@ -21,7 +21,7 @@ const Home = () => {
     const hideModal = () => setShow(false);
 
     return(
-        <div className="bg-light" style={{height: "100vh"}}>
+        <div className="bg-light d-flex flex-column align-items-center" style={{height: "100vh"}}>
             <Modal show={alertSuccess} onHide={() => setAlertSuccess(false)}>
                 <Modal.Header className="bg-success" closeButton>
                 <Modal.Title>Successful registration!</Modal.Title>
@@ -30,19 +30,17 @@ const Home = () => {
                     Your registration was successful. Now you can log in.
                 </Modal.Body>
             </Modal>
-            <Container className="d-flex align-items-center flex-lg-nowrap flex-sm-wrap" style={{height: "91.5vh"}}>
-                <Container>
-                    <div className="d-flex justify-content-lg-start justify-content-sm-center">
+            <Container className="d-flex flex-column justify-content-evenly py-5 flex-lg-row align-items-lg-center px-lg-0 justify-content-lg-around h-100" >
+                <div className="col-12 col-lg-6">
+                    <div className="d-flex justify-content-center w-100 justify-content-lg-start">
                         <i className="bi bi-cash-coin fs-1 text-primary me-1"></i>
                         <h1 className="display-5 fw-bold text-primary ms-1">Personal Budget</h1>
                     </div>
-                    <p className="fs-5 text-lg-start text-sm-center">Looking for where to record your money flow? Look no further, this web application allows you to do so, so that in this way you do not lose control of your money.</p>
-                </Container>
-                <Container className="ps-5 pe-5">
-                    <Container className="ps-5 pe-5">
+                    <p className="fs-5 text-center w-100 text-lg-start">Looking for where to record your money flow? Look no further, this web application allows you to do so, so that in this way you do not lose control of your money.</p>
+                </div>
+                <div className="col-12 col-lg-5">
                         <LogIn handleClickShow={handleClickShow}/>
-                    </Container>
-                </Container>
+                </div>
             </Container>
 
             <Modal show={show} onHide={handleClickShow} backdrop="static" centered>
