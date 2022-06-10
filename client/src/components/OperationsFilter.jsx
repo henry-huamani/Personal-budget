@@ -57,7 +57,7 @@ const OperationsFilter = ({incomeOperations, outflowOperations, getOperationsByT
                     </Tab>
             </Tabs>
 
-            <Modal show={showForm} onHide={() => setShowForm(false)}>
+            <Modal show={showForm} onHide={() => setShowForm(false)} backdrop="static" centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Operation</Modal.Title>
                 </Modal.Header>
