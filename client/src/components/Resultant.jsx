@@ -33,7 +33,7 @@ const Resultant = (props) => {
     }, [showChange]);
 
     return <div className='p-1'>
-        <Card className="mt-1">
+        <Card className="mt-3">
             <ListGroup variant="flush">
                 <ListGroup.Item className="lead">Total amount of income: {props.incomeAmount}</ListGroup.Item>
                 <ListGroup.Item className="lead">Total amount of outflow: {props.outflowAmount}</ListGroup.Item>
@@ -41,7 +41,7 @@ const Resultant = (props) => {
             </ListGroup>
         </Card>
 
-        <h6 className="display-6 mt-3">Last 10 operations recorded:</h6>
+        <h6 className="display-6 my-3 text-primary text-center">Last 10 operations recorded</h6>
         <Operations records={props.records}
         setShowChange={setShowChange}
         setShowForm={setShowForm}
@@ -52,7 +52,7 @@ const Resultant = (props) => {
             <Button onClick={() => setShowForm(true)} variant='primary' >Add new +</Button>
         </Container>
 
-        <Modal show={showForm} onHide={() => setShowForm(false)}>
+        <Modal show={showForm} onHide={() => setShowForm(false)} backdrop="static" centered>
             <Modal.Header closeButton>
                 <Modal.Title>New operation</Modal.Title>
             </Modal.Header>
