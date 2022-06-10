@@ -34,7 +34,7 @@ const Operations = ({records, setShowChange, setShowForm, setNewOperation, setId
     }
 
     return records.length > 0 ? (
-        <Table striped bordered hover responsive>
+        <Table bordered hover responsive variant="dark">
             <thead>
                 <tr>
                     <th>Concept</th>
@@ -63,7 +63,7 @@ const Operations = ({records, setShowChange, setShowForm, setNewOperation, setId
                 ))}
             </tbody>
         </Table>
-    ) : <p className="lead text-center">You have not yet registered any operations</p>;
+    ) : <p className="font-monospace fs-5 text-center">You have not yet registered any operations</p>;
 }
 
 export default Operations;
